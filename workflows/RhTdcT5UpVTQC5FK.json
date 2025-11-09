@@ -1,0 +1,194 @@
+{
+  "active": false,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate a gamma": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Generate a gamma",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Bitable:table:record:batchAdd bitable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-09T07:25:38.899Z",
+  "id": "RhTdcT5UpVTQC5FK",
+  "isArchived": false,
+  "meta": null,
+  "name": "Gamma测试",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b382eebb-b6c7-41c2-8da8-650b9bc755d4",
+      "name": "When chat message received",
+      "webhookId": "de0d1158-b121-4f5d-8e90-3c679f3f2fd1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-gamma.gamma",
+      "typeVersion": 1,
+      "position": [
+        464,
+        32
+      ],
+      "id": "df978882-e907-43a4-b242-d9f751b1c636",
+      "name": "Generate a gamma",
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4aa307fe-4fc4-4914-91a0-8898e75d4da7",
+              "name": "输入",
+              "value": "={{ $json.chatInput }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "0dfdc88b-7a53-4fbc-b81d-97b4daec2ffe",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "url": "=https://public-api.gamma.app/v0.2/generations/{{ $json[\"generationId\"] }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "gammaApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "=accept",
+              "value": "=application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        672,
+        32
+      ],
+      "id": "a06c0cf0-255b-41ee-8bed-60b2472ec519",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d3ab6632-6a69-4a12-aa1a-36d49b9e28a0",
+              "name": "文案图片",
+              "value": "={{ $json.gammaUrl }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        880,
+        32
+      ],
+      "id": "43de47d6-f245-4f29-aceb-9ff798bdcf65",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-feishu-lite.feishuNode",
+      "typeVersion": 1,
+      "position": [
+        1088,
+        32
+      ],
+      "id": "994fdcdf-46e7-4231-a468-a03e7759b82b",
+      "name": "Bitable:table:record:batchAdd bitable",
+      "credentials": {}
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-09T07:25:38.899Z",
+      "createdAt": "2025-11-09T07:25:38.899Z",
+      "role": "workflow:owner",
+      "workflowId": "RhTdcT5UpVTQC5FK",
+      "projectId": "sTCZkQi1buNKsCGX"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-09T07:25:38.899Z",
+  "versionId": "e5dc6f7e-3c51-4d06-bb06-7bfc4868aac7"
+}
