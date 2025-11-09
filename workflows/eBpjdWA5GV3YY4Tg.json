@@ -1,0 +1,87 @@
+{
+  "active": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-09T07:19:40.009Z",
+  "id": "eBpjdWA5GV3YY4Tg",
+  "isArchived": false,
+  "meta": null,
+  "name": "Prevent Sleep",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f0aa0ebe-a4c3-4542-8cbb-8ff9c9bba866",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://jayson520-n8n21.hf.space",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "f4693371-023b-4570-aa31-b23a1a77e6f1",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "nP4rpMT3B1sVfVbK",
+          "name": "Unnamed credential"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-09T07:19:40.009Z",
+      "createdAt": "2025-11-09T07:19:40.009Z",
+      "role": "workflow:owner",
+      "workflowId": "eBpjdWA5GV3YY4Tg",
+      "projectId": "sTCZkQi1buNKsCGX"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-11-09T07:25:19.838Z",
+  "versionId": "ea334ebc-21bb-4a0e-8a82-efd4771f8390"
+}
